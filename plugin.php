@@ -10,9 +10,15 @@
 
 
 
-function characterStory($charId) {
+function characterStory($attr) {
   if(!$charId) return 'No associated character found';
 
+  $attr = shortcode_atts(
+		[
+			'charId' => 1,
+    ], $attr
+	);
+  $charId = $attr['charId'];
   $ch = curl_init();
   // IMPORTANT: the below line is a security risk, read https://paragonie.com/blog/2017/10/certainty-automated-cacert-pem-management-for-php-software
   // in most cases, you should set it to true
