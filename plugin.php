@@ -18,8 +18,8 @@ function characterStory($attr) {
 	);
   $charId = $attr['charId'];
 
-  if(!$charId) return 'No associated character found';
-  
+  if(!$charId) return 'No associated character found!'.print_r($attr);
+
   $ch = curl_init();
   // IMPORTANT: the below line is a security risk, read https://paragonie.com/blog/2017/10/certainty-automated-cacert-pem-management-for-php-software
   // in most cases, you should set it to true
