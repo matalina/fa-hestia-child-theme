@@ -13,10 +13,11 @@ function characterStory($charId) {
   curl_close($ch);
 
   $obj = json_decode($result);
-  echo $obj;
   $output =  '';
-  foreach($obj as $key => $value) {
-    echo $key.'-'.$value;
+  foreach($obj as $value) {
+    $url = "https://thefirstage.org/forums/thread-{$value->tid}.html";
+    $block = "<div class=\"character-story\" id=\"thread-{$value->tid}\"><a href=\"{$url}\">{$value->subject}</a></div>";
+    $output .= $block;
   }
   return $output;
 }
