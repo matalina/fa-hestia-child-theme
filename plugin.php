@@ -10,12 +10,12 @@
 
 
 
-function characterStory($attr) {
-  $attr = shortcode_atts(
-		[
-			'charId' => 1,
-    ], $attr
-	);
+function characterStory($attrs) {
+  $default = [
+    'charId' => 1,
+  ];
+
+  $attr = shortcode_atts($default, $attrs);
   $charId = $attr['charId'];
 
   if(!$charId) return 'No associated character found!'.print_r($attr);
