@@ -1,4 +1,14 @@
 <?php
+/**
+* Plugin Name: firstage-plugin
+* Plugin URI: https://thefirstage.org/
+* Short codes and snippets for the first age
+* Version: 0.1
+* Author: Alicia Wilkerson
+* Author URI: https://akddev.net
+**/
+
+
 
 function characterStory($charId) {
   if(!$charId) return 'No associated character found';
