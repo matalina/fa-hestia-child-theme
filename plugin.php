@@ -10,17 +10,19 @@
 
 
 
-function characterStory($attrs) {
+function characterStory($atts) {
   $default = [
-    'charId' => 1,
+    'char' => 1,
+    'exclude' => [],
   ];
 
-  $attr = shortcode_atts($default, $attrs);
-  $charId = $attr['charId'];
+  $attr = shortcode_atts($default, $atts);
+  $charId = $attr['char'];
+  $attr['exclude'] = explode(',',str_replace(' ', '', $attr['exclude']));
 
   if(!$charId) return 'No associated character found!';
 
-  return 'character'.print_r($attrs['charId']);
+  return 'character'.$attr['char'];
 
   $ch = curl_init();
   // IMPORTANT: the below line is a security risk, read https://paragonie.com/blog/2017/10/certainty-automated-cacert-pem-management-for-php-software
@@ -35,6 +37,7 @@ function characterStory($attrs) {
   $output =  '';
   foreach($obj as $value) {
     $url = "https://thefirstage.org/forums/thread-{$value->tid}.html";
+    if(in_array($value->tid, $attr['exclude'])) continue;
     $block = "<div class=\"character-story\" id=\"thread-{$value->tid}\"><a href=\"{$url}\">{$value->subject}</a></div>";
     $output .= $block;
   }
